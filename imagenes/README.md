@@ -20,7 +20,7 @@ La web las carga automáticamente; mientras no exista el archivo muestra un plac
 
 | Archivo | Producto | Precio |
 |---|---|---|
-| `clasico-01.jpg` | Top Shiny lazo crema | S/ 129.00 |
+| `clasico-01.jpg` | Vestido brasilero | S/ 129.00 |
 | `clasico-02.jpg` | Conjunto Kimi satinado | S/ 179.00 |
 | `clasico-03.jpg` | Vestido drapeado chocolate | S/ 159.00 |
 | `clasico-04.jpg` | Top halter blanco | S/ 99.00 |
