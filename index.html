@@ -335,6 +335,120 @@
     .insta-grid{grid-template-columns:repeat(3,1fr);}
     .subnav{flex-wrap:wrap;gap:14px;}
   }
+
+  /* ===== Product detail modal (PDP) ===== */
+  .pdp-overlay{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(20,12,16,.6);
+    backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;
+    padding:24px;
+    opacity:0;transition:opacity .25s;
+  }
+  .pdp-overlay.open{display:flex;opacity:1;}
+  .pdp-modal{
+    background:var(--white);
+    border-radius:22px;
+    width:100%;max-width:980px;max-height:90vh;
+    overflow:auto;
+    display:grid;grid-template-columns:1fr 1fr;
+    position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);
+    transform:translateY(14px) scale(.98);
+    transition:transform .3s cubic-bezier(.23,1,.32,1);
+  }
+  .pdp-overlay.open .pdp-modal{transform:none;}
+  .street-mode .pdp-modal{background:var(--street-card);color:#fff;}
+  .pdp-close{
+    position:absolute;top:14px;right:14px;z-index:5;
+    width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(255,255,255,.9);color:#1B1B1B;font-size:22px;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);
+  }
+
+  .pdp-gallery{padding:20px;display:flex;flex-direction:column;gap:12px;}
+  .pdp-main{
+    position:relative;overflow:hidden;border-radius:16px;
+    aspect-ratio:3/4;cursor:zoom-in;
+    background:linear-gradient(155deg,#f9dde4,#fcf0f3);
+  }
+  .street-mode .pdp-main{background:linear-gradient(155deg,#2a2a2a,#1c1c1c);}
+  .pdp-main img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .15s ease;}
+  .pdp-main.zoomed{cursor:zoom-out;}
+  .pdp-main.zoomed img{transform:scale(2.4);}
+  .pdp-main-ph{
+    position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+    text-align:center;color:#c98199;font-family:'Playfair Display',serif;font-style:italic;
+    font-size:15px;padding:20px;
+  }
+  .street-mode .pdp-main-ph{color:#888;}
+  .pdp-zoom-hint{
+    position:absolute;bottom:12px;left:12px;
+    background:rgba(255,255,255,.9);color:#1B1B1B;
+    font-size:11px;font-weight:600;padding:6px 12px;border-radius:999px;
+    pointer-events:none;
+  }
+  .pdp-thumbs{display:flex;gap:10px;flex-wrap:wrap;}
+  .pdp-thumb{
+    width:62px;height:78px;border-radius:10px;overflow:hidden;cursor:pointer;
+    border:2px solid transparent;position:relative;flex:0 0 auto;
+    background:linear-gradient(155deg,#f9dde4,#fcf0f3);
+  }
+  .street-mode .pdp-thumb{background:linear-gradient(155deg,#2a2a2a,#1c1c1c);}
+  .pdp-thumb.active{border-color:var(--pink-kimi);}
+  .pdp-thumb img{width:100%;height:100%;object-fit:cover;}
+  .pdp-thumb .thumb-ph{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:9px;text-align:center;color:#b07a8c;padding:4px;line-height:1.1;
+  }
+  .street-mode .pdp-thumb .thumb-ph{color:#888;}
+
+  .pdp-info{padding:30px 30px 30px 10px;}
+  .pdp-info h2{font-family:'Playfair Display',serif;font-style:italic;font-size:26px;margin:0 0 8px;}
+  .street-mode .pdp-info h2{font-family:'Inter',sans-serif;font-style:normal;text-transform:uppercase;color:#fff;}
+  .pdp-price{font-size:20px;font-weight:600;margin-bottom:18px;}
+  .street-mode .pdp-price{color:var(--pink-kimi);}
+  .pdp-price .price-old{font-size:15px;}
+  .pdp-desc{font-size:14px;line-height:1.65;color:var(--taupe);margin:0 0 22px;white-space:pre-line;}
+  .street-mode .pdp-desc{color:#bdbdbd;}
+  .pdp-block{margin-bottom:20px;}
+  .pdp-block h4{
+    font-size:12px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--taupe);margin:0 0 10px;
+  }
+  .pdp-colors{display:flex;gap:12px;flex-wrap:wrap;}
+  .pdp-color{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;color:var(--taupe);}
+  .pdp-color .dot{width:30px;height:30px;border-radius:50%;border:2px solid #e6cdd5;box-shadow:0 2px 5px rgba(0,0,0,.1);}
+  .pdp-sizes{display:flex;gap:8px;flex-wrap:wrap;}
+  .pdp-size{
+    min-width:42px;padding:8px 12px;border-radius:10px;text-align:center;
+    border:1.5px solid #e6cdd5;font-size:13px;font-weight:600;cursor:pointer;
+    transition:all .2s;
+  }
+  .pdp-size:hover,.pdp-size.sel{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .pdp-measures{width:100%;border-collapse:collapse;font-size:12px;}
+  .pdp-measures th,.pdp-measures td{
+    border:1px solid #eedde3;padding:7px 6px;text-align:center;
+  }
+  .pdp-measures th{background:var(--pink-petal);color:var(--ink);font-weight:600;}
+  .street-mode .pdp-measures th{background:#333;color:#fff;}
+  .street-mode .pdp-measures th,.street-mode .pdp-measures td{border-color:#3a3a3a;}
+  .pdp-model{
+    font-size:13px;background:var(--pink-petal);color:#9a4f68;
+    padding:12px 16px;border-radius:12px;margin-bottom:22px;font-weight:500;
+  }
+  .street-mode .pdp-model{background:#2c2c2c;color:var(--pink-kimi);}
+  .pdp-add{
+    width:100%;padding:15px;border:none;border-radius:999px;cursor:pointer;
+    background:var(--ink);color:#fff;font-size:14px;font-weight:600;
+  }
+  .street-mode .pdp-add{background:var(--pink-kimi);color:#1B1B1B;}
+
+  @media (max-width:760px){
+    .pdp-modal{grid-template-columns:1fr;max-height:94vh;}
+    .pdp-info{padding:6px 22px 26px;}
+  }
 </style>
 </head>
 <body class="classic-mode">
@@ -530,6 +644,49 @@
   </div>
 </footer>
 
+<!-- ===== Pop-up de producto (PDP) ===== -->
+<div class="pdp-overlay" id="pdp" onclick="if(event.target===this)closeProduct()">
+  <div class="pdp-modal">
+    <button class="pdp-close" onclick="closeProduct()" aria-label="Cerrar">×</button>
+
+    <!-- Galería / imagen ampliada con zoom -->
+    <div class="pdp-gallery">
+      <div class="pdp-main" id="pdpMain">
+        <img id="pdpMainImg" src="" alt="">
+        <div class="pdp-main-ph" id="pdpMainPh"></div>
+        <div class="pdp-zoom-hint">🔍 Click para acercar</div>
+      </div>
+      <div class="pdp-thumbs" id="pdpThumbs"></div>
+    </div>
+
+    <!-- Información de la prenda -->
+    <div class="pdp-info">
+      <h2 id="pdpName"></h2>
+      <div class="pdp-price" id="pdpPrice"></div>
+      <p class="pdp-desc" id="pdpDesc"></p>
+
+      <div class="pdp-block">
+        <h4>Colores disponibles</h4>
+        <div class="pdp-colors" id="pdpColors"></div>
+      </div>
+
+      <div class="pdp-block">
+        <h4>Tallas disponibles</h4>
+        <div class="pdp-sizes" id="pdpSizes"></div>
+      </div>
+
+      <div class="pdp-block">
+        <h4>Medidas por talla (cm)</h4>
+        <table class="pdp-measures" id="pdpMeasures"></table>
+      </div>
+
+      <div class="pdp-model" id="pdpModel"></div>
+
+      <button class="pdp-add" id="pdpAdd">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const data = {
   classic: {
@@ -550,8 +707,48 @@ const data = {
     ],
     subnav: ["Vestidos","Tops","Conjuntos","Accesorios","Colecciones","Conócenos"],
     heroImg: "imagenes/hero-clasico.jpg",  /* foto campaña línea Clásico */
+    /* ================================================================
+       👗 CÓMO LLENAR LA DESCRIPCIÓN DE CADA PRENDA
+       Copia este bloque "details" dentro de cualquier producto y edítalo.
+       Si un producto NO tiene "details", se muestran placeholders por defecto.
+
+       details:{
+         description:"Tela, corte, ocasión, detalles especiales...",
+         colors:[ {name:"Rosa", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"} ],
+         sizes:["XS","S","M","L"],
+         measures:[
+           {talla:"S", busto:"86", cintura:"66", cadera:"92", largo:"89"},
+           {talla:"M", busto:"90", cintura:"70", cadera:"96", largo:"90"},
+         ],
+         modelNote:"La modelo mide 1.68 m y usa talla S.",
+         gallery:[                       // 📸 aquí van las fotos en distintos ángulos
+           {img:"imagenes/clasico-01.jpg", label:"Frontal"},
+           {img:null, label:"Espalda"},  // pon la ruta de la foto cuando la subas
+           {img:null, label:"Lateral"},
+           {img:null, label:"Detalle"},
+         ],
+       },
+    ================================================================ */
     products: [
-      {name:"Vestido brasilero",        price:"35.00", oldPrice:null,     badge:"Nuevo",  img:"imagenes/clasico-01.jpg"},
+      {name:"Vestido brasilero",        price:"35.00", oldPrice:null,     badge:"Nuevo",  img:"imagenes/clasico-01.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/clasico-01.jpg", label:"Frontal"},
+            {img:null, label:"Espalda"},
+            {img:null, label:"Lateral"},
+            {img:null, label:"Detalle de tela"},
+          ],
+        }},
       {name:"Conjunto Kimi",       price:"40.00", oldPrice:null,     badge:null,     img:"imagenes/clasico-02.jpg"},
       {name:"Top lentejuelas",   price:"30.00", oldPrice:"30.00", badge:"Oferta", img:"imagenes/clasico-03.jpg"},
       {name:"Top satín",            price:"30.00",  oldPrice:null,     badge:null,     img:"imagenes/clasico-04.jpg"},
@@ -656,12 +853,12 @@ function renderProducts(products){
   const grid = document.getElementById("product-grid");
   grid.innerHTML = products.map((p, idx) => `
     <div class="product-card">
-      <div class="product-img">
+      <div class="product-img" onclick="openProduct(${idx})">
         ${p.badge ? `<div class="badge">${p.badge}</div>` : ""}
         ${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : `<div class="ph">${currentLine==='classic' ? 'Kimi' : 'foto'}</div>`}
-        <button class="add-btn" onclick="toggleAdd(this, ${idx})">+</button>
+        <button class="add-btn" onclick="event.stopPropagation();toggleAdd(this, ${idx})">+</button>
       </div>
-      <p class="product-name">${p.name}</p>
+      <p class="product-name" onclick="openProduct(${idx})" style="cursor:pointer">${p.name}</p>
       <p class="product-price">${p.oldPrice ? `<span class="price-old">S/ ${p.oldPrice}</span>` : ""}S/ ${p.price}</p>
     </div>
   `).join("");
@@ -708,6 +905,118 @@ function initTilt(){
 }
 
 initTilt();
+
+/* ===== Pop-up de producto (PDP) ===== */
+let currentGallery = [], galleryIndex = 0;
+
+/* Placeholders por defecto para productos que aún no tienen "details" */
+function defaultDetails(p){
+  return {
+    description: "✏️ Escribe aquí la descripción de esta prenda (tela, corte, ocasión, detalles especiales).",
+    colors: [ {name:"Color 1", hex:"#F2A6BC"}, {name:"Color 2", hex:"#1B1B1B"} ],
+    sizes: ["S","M","L"],
+    measures: [
+      {talla:"S", busto:"—", cintura:"—", cadera:"—", largo:"—"},
+      {talla:"M", busto:"—", cintura:"—", cadera:"—", largo:"—"},
+      {talla:"L", busto:"—", cintura:"—", cadera:"—", largo:"—"},
+    ],
+    modelNote: "✏️ La modelo mide — y usa talla —.",
+    gallery: [
+      {img: p.img || null, label:"Frontal"},
+      {img: null, label:"Espalda"},
+      {img: null, label:"Lateral"},
+      {img: null, label:"Detalle"},
+    ],
+  };
+}
+
+function getDetails(p){ return p.details ? p.details : defaultDetails(p); }
+
+function openProduct(idx){
+  const p = data[currentLine].products[idx];
+  const d = getDetails(p);
+
+  document.getElementById("pdpName").textContent = p.name;
+  document.getElementById("pdpPrice").innerHTML =
+    (p.oldPrice ? `<span class="price-old">S/ ${p.oldPrice}</span> ` : "") + `S/ ${p.price}`;
+  document.getElementById("pdpDesc").textContent = d.description || "";
+
+  document.getElementById("pdpColors").innerHTML =
+    (d.colors && d.colors.length)
+      ? d.colors.map(c => `<div class="pdp-color"><span class="dot" style="background:${c.hex}"></span>${c.name}</div>`).join("")
+      : '<span style="font-size:12px;color:#aaa">—</span>';
+
+  document.getElementById("pdpSizes").innerHTML =
+    (d.sizes || []).map(s => `<div class="pdp-size" onclick="selectSize(this)">${s}</div>`).join("");
+
+  const m = d.measures || [];
+  document.getElementById("pdpMeasures").innerHTML =
+    `<tr><th>Talla</th><th>Busto</th><th>Cintura</th><th>Cadera</th><th>Largo</th></tr>` +
+    m.map(r => `<tr><td>${r.talla}</td><td>${r.busto}</td><td>${r.cintura}</td><td>${r.cadera}</td><td>${r.largo}</td></tr>`).join("");
+
+  document.getElementById("pdpModel").textContent = "📏 " + (d.modelNote || "");
+
+  currentGallery = (d.gallery && d.gallery.length) ? d.gallery : [{img: p.img || null, label:"Frontal"}];
+  renderThumbs();
+  selectGalleryImg(0);
+
+  document.getElementById("pdpMain").classList.remove("zoomed");
+  document.getElementById("pdp").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function renderThumbs(){
+  document.getElementById("pdpThumbs").innerHTML = currentGallery.map((g, i) =>
+    `<div class="pdp-thumb" onclick="selectGalleryImg(${i})">${
+      g.img ? `<img src="${g.img}" alt="${g.label}">` : `<div class="thumb-ph">${g.label}</div>`
+    }</div>`
+  ).join("");
+}
+
+function selectGalleryImg(i){
+  galleryIndex = i;
+  const g = currentGallery[i];
+  const img = document.getElementById("pdpMainImg");
+  const ph  = document.getElementById("pdpMainPh");
+  if(g.img){
+    img.src = g.img; img.style.display = "block"; ph.style.display = "none";
+    img.onerror = () => { img.style.display = "none"; ph.style.display = "flex"; ph.textContent = "Foto pendiente: " + g.label; };
+  } else {
+    img.style.display = "none"; ph.style.display = "flex"; ph.textContent = "Foto pendiente: " + g.label;
+  }
+  document.querySelectorAll("#pdpThumbs .pdp-thumb").forEach((t, ti) => t.classList.toggle("active", ti === i));
+  document.getElementById("pdpMain").classList.remove("zoomed");
+}
+
+function selectSize(el){
+  el.parentElement.querySelectorAll(".pdp-size").forEach(s => s.classList.remove("sel"));
+  el.classList.add("sel");
+}
+
+function closeProduct(){
+  document.getElementById("pdp").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+/* Zoom: click para acercar, mover el mouse para recorrer la imagen */
+(function initZoom(){
+  const main = document.getElementById("pdpMain");
+  const img  = document.getElementById("pdpMainImg");
+  main.addEventListener("click", () => {
+    if(img.style.display === "none") return;   // no hacer zoom sobre placeholders
+    main.classList.toggle("zoomed");
+  });
+  main.addEventListener("mousemove", e => {
+    if(!main.classList.contains("zoomed")) return;
+    const r = main.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
+    img.style.transformOrigin = `${x}% ${y}%`;
+  });
+  main.addEventListener("mouseleave", () => main.classList.remove("zoomed"));
+})();
+
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeProduct(); });
 </script>
 
 
