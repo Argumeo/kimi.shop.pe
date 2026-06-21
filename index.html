@@ -449,6 +449,252 @@
     .pdp-modal{grid-template-columns:1fr;max-height:94vh;}
     .pdp-info{padding:6px 22px 26px;}
   }
+
+  /* ===== Header: buscar + carrito ===== */
+  .header-left{width:170px;display:flex;align-items:center;gap:10px;}
+  .search-box{
+    display:flex;align-items:center;gap:6px;
+    background:var(--pink-petal);border-radius:999px;
+    padding:7px 14px;font-size:13px;color:var(--taupe);
+    cursor:text;flex:1;
+  }
+  .street-mode .search-box{background:#2a2a2a;color:#bbb;}
+  .search-box input{
+    border:none;background:transparent;outline:none;
+    font-family:inherit;font-size:13px;color:inherit;width:100%;
+  }
+  .header-right{width:170px;display:flex;align-items:center;justify-content:flex-end;}
+  .cart-btn{
+    position:relative;border:none;background:transparent;cursor:pointer;
+    font-size:22px;color:var(--ink);display:flex;align-items:center;
+  }
+  .street-mode .cart-btn{color:#fff;}
+  .cart-badge{
+    position:absolute;top:-6px;right:-8px;
+    background:var(--pink-kimi);color:#fff;
+    font-size:10px;font-weight:700;
+    min-width:17px;height:17px;border-radius:999px;
+    display:flex;align-items:center;justify-content:center;padding:0 4px;
+  }
+  .cart-badge.hidden{display:none;}
+
+  /* ===== Banda de resultados de búsqueda / categoría ===== */
+  .filter-bar{
+    max-width:1180px;margin:0 auto;padding:14px 24px 0;
+    display:none;align-items:center;gap:12px;font-size:13px;color:var(--taupe);
+  }
+  .filter-bar.show{display:flex;}
+  .filter-bar b{color:var(--ink);}
+  .street-mode .filter-bar b{color:#fff;}
+  .filter-clear{
+    border:1px solid #e6cdd5;background:transparent;color:inherit;cursor:pointer;
+    border-radius:999px;padding:5px 14px;font-size:12px;font-weight:600;
+  }
+  .bubble.active-cat .circle{box-shadow:0 0 0 3px var(--pink-kimi);}
+
+  /* ===== Modal carrito ===== */
+  .cart-overlay{
+    position:fixed;inset:0;z-index:210;
+    background:rgba(20,12,16,.55);backdrop-filter:blur(4px);
+    display:none;justify-content:flex-end;
+    opacity:0;transition:opacity .25s;
+  }
+  .cart-overlay.open{display:flex;opacity:1;}
+  .cart-panel{
+    background:var(--white);width:100%;max-width:420px;height:100%;
+    display:flex;flex-direction:column;
+    box-shadow:-20px 0 60px rgba(0,0,0,.3);
+    transform:translateX(40px);transition:transform .3s cubic-bezier(.23,1,.32,1);
+  }
+  .cart-overlay.open .cart-panel{transform:none;}
+  .street-mode .cart-panel{background:var(--street-card);color:#fff;}
+  .cart-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 22px 16px;border-bottom:1px solid #f1dde3;
+  }
+  .street-mode .cart-head{border-color:#333;}
+  .cart-head h3{margin:0;font-family:'Playfair Display',serif;font-style:italic;font-size:22px;}
+  .street-mode .cart-head h3{font-family:'Inter',sans-serif;font-style:normal;text-transform:uppercase;color:#fff;}
+  .cart-close{border:none;background:transparent;font-size:26px;cursor:pointer;color:inherit;line-height:1;}
+  .cart-items{flex:1;overflow:auto;padding:10px 22px;}
+  .cart-empty{text-align:center;color:var(--taupe);padding:60px 20px;font-size:14px;}
+  .cart-row{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f4e6ea;}
+  .street-mode .cart-row{border-color:#333;}
+  .cart-thumb{
+    width:62px;height:80px;border-radius:10px;flex:0 0 auto;overflow:hidden;
+    background:linear-gradient(155deg,#f9dde4,#fcf0f3);
+    display:flex;align-items:center;justify-content:center;font-size:9px;color:#b07a8c;text-align:center;
+  }
+  .street-mode .cart-thumb{background:linear-gradient(155deg,#2a2a2a,#1c1c1c);color:#888;}
+  .cart-thumb img{width:100%;height:100%;object-fit:cover;}
+  .cart-info{flex:1;min-width:0;}
+  .cart-info .nm{font-size:13px;font-weight:600;margin:0 0 4px;}
+  .cart-info .pr{font-size:13px;color:var(--pink-deep);font-weight:600;}
+  .street-mode .cart-info .pr{color:var(--pink-kimi);}
+  .cart-qty{display:flex;align-items:center;gap:10px;margin-top:8px;}
+  .cart-qty button{
+    width:26px;height:26px;border-radius:8px;border:1px solid #e6cdd5;
+    background:transparent;color:inherit;font-size:15px;cursor:pointer;line-height:1;
+  }
+  .cart-qty span{font-size:13px;font-weight:600;min-width:18px;text-align:center;}
+  .cart-remove{
+    border:none;background:transparent;color:#c98199;cursor:pointer;
+    font-size:11px;text-decoration:underline;align-self:flex-start;margin-left:auto;
+  }
+  .cart-foot{padding:18px 22px;border-top:1px solid #f1dde3;}
+  .street-mode .cart-foot{border-color:#333;}
+  .cart-total{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:6px;}
+  .cart-total .t{color:var(--pink-deep);}
+  .street-mode .cart-total .t{color:var(--pink-kimi);}
+  .cart-checkout{
+    width:100%;padding:15px;border:none;border-radius:999px;cursor:pointer;
+    background:var(--ink);color:#fff;font-size:14px;font-weight:600;margin-top:8px;
+  }
+  .street-mode .cart-checkout{background:var(--pink-kimi);color:#1B1B1B;}
+  .cart-checkout:disabled{opacity:.4;cursor:not-allowed;}
+
+  /* Recomendados dentro del carrito (placeholders) */
+  .cart-reco{padding:6px 22px 16px;}
+  .cart-reco h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--taupe);margin:8px 0 12px;}
+  .reco-grid{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;}
+  .reco-card{flex:0 0 96px;cursor:pointer;}
+  .reco-img{
+    width:96px;height:120px;border-radius:12px;overflow:hidden;
+    background:linear-gradient(155deg,#f9dde4,#fcf0f3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;color:#b07a8c;text-align:center;padding:6px;
+  }
+  .street-mode .reco-img{background:linear-gradient(155deg,#2a2a2a,#1c1c1c);color:#888;}
+  .reco-img img{width:100%;height:100%;object-fit:cover;}
+  .reco-card .nm{font-size:11px;font-weight:600;margin:6px 0 2px;}
+  .reco-card .pr{font-size:11px;color:var(--pink-deep);font-weight:600;}
+  .street-mode .reco-card .pr{color:var(--pink-kimi);}
+
+  @media (max-width:880px){
+    .header-left,.header-right{width:auto;}
+    .search-box{padding:6px 10px;}
+    .cart-panel{max-width:100%;}
+  }
+
+  /* ===== Pasarela de pago ===== */
+  .pay-overlay{
+    position:fixed;inset:0;z-index:140;display:none;
+    align-items:center;justify-content:center;padding:20px;
+    background:rgba(20,12,16,.55);backdrop-filter:blur(3px);
+    opacity:0;transition:opacity .25s;
+  }
+  .pay-overlay.open{display:flex;opacity:1;}
+  .pay-box{
+    position:relative;background:var(--white);width:100%;max-width:420px;
+    max-height:92vh;overflow:auto;border-radius:22px;padding:26px 24px 22px;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);text-align:center;
+    transform:translateY(16px);transition:transform .3s cubic-bezier(.23,1,.32,1);
+  }
+  .pay-overlay.open .pay-box{transform:none;}
+  .street-mode .pay-box{background:var(--street-card);color:#fff;}
+  .pay-close{
+    position:absolute;top:14px;right:16px;border:none;background:transparent;
+    font-size:26px;line-height:1;cursor:pointer;color:inherit;
+  }
+  .pay-title{
+    margin:0 0 4px;font-family:'Playfair Display',serif;font-style:italic;font-size:24px;
+  }
+  .street-mode .pay-title{font-family:'Inter',sans-serif;font-style:normal;text-transform:uppercase;}
+  .pay-total{font-size:14px;color:var(--taupe);margin:0 0 18px;}
+  .pay-total strong{color:var(--pink-deep);}
+  .street-mode .pay-total strong{color:var(--pink-kimi);}
+  .pay-tabs{display:flex;gap:8px;margin-bottom:18px;}
+  .pay-tab{
+    flex:1;padding:10px 6px;border:1px solid #e6cdd5;border-radius:999px;
+    background:transparent;color:inherit;font-size:13px;font-weight:600;cursor:pointer;
+    transition:all .2s;
+  }
+  .pay-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .street-mode .pay-tab{border-color:#444;}
+  .street-mode .pay-tab.active{background:var(--pink-kimi);color:#1B1B1B;border-color:var(--pink-kimi);}
+  .pay-body{min-height:140px;}
+  .pay-qr{
+    width:200px;height:200px;margin:0 auto 14px;border-radius:16px;overflow:hidden;
+    background:linear-gradient(155deg,#f9dde4,#fcf0f3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;color:#b07a8c;text-align:center;padding:14px;border:1px solid #f1dde3;
+  }
+  .street-mode .pay-qr{background:linear-gradient(155deg,#2a2a2a,#1c1c1c);color:#888;border-color:#333;}
+  .pay-qr img{width:100%;height:100%;object-fit:contain;}
+  .pay-info{font-size:14px;line-height:1.7;}
+  .pay-info .lbl{color:var(--taupe);font-size:12px;}
+  .pay-info .val{font-weight:700;}
+  .pay-copy{
+    display:inline-flex;align-items:center;gap:6px;margin:14px auto 0;
+    padding:9px 16px;border:1px solid #e6cdd5;border-radius:999px;
+    background:transparent;color:inherit;font-size:12px;font-weight:600;cursor:pointer;
+  }
+  .pay-bank{text-align:left;font-size:14px;line-height:1.5;}
+  .pay-bank .row{
+    display:flex;justify-content:space-between;gap:12px;
+    padding:11px 0;border-bottom:1px solid #f4e6ea;
+  }
+  .street-mode .pay-bank .row{border-color:#333;}
+  .pay-bank .row .k{color:var(--taupe);font-size:13px;}
+  .pay-bank .row .v{font-weight:700;text-align:right;}
+  .pay-send{
+    display:block;width:100%;margin-top:18px;padding:14px;border-radius:999px;
+    background:#25D366;color:#fff;font-size:14px;font-weight:700;text-decoration:none;
+    transition:filter .2s;
+  }
+  .pay-send:hover{filter:brightness(.95);}
+
+  /* ===== Comentarios de clientes (dentro del PDP) ===== */
+  .pdp-reviews-btn{
+    width:100%;padding:12px;margin-bottom:14px;cursor:pointer;
+    border:1.5px solid #e6cdd5;border-radius:999px;
+    background:transparent;color:var(--ink);font-size:13px;font-weight:600;
+    transition:background .2s,color .2s;
+  }
+  .pdp-reviews-btn:hover{background:var(--pink-petal);}
+  .street-mode .pdp-reviews-btn{border-color:#444;color:#fff;}
+  .street-mode .pdp-reviews-btn:hover{background:#2c2c2c;}
+
+  .pdp-reviews{display:none;margin-bottom:18px;}
+  .pdp-reviews.open{display:block;}
+  .pdp-reviews-list{
+    max-height:240px;overflow:auto;
+    display:flex;flex-direction:column;gap:12px;margin-bottom:16px;
+  }
+  .review-item{
+    background:var(--pink-petal);border-radius:12px;padding:12px 14px;
+  }
+  .street-mode .review-item{background:#2a2a2a;}
+  .review-item .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+  .review-item .who{font-size:12px;font-weight:700;color:var(--ink);}
+  .street-mode .review-item .who{color:#fff;}
+  .review-item .stars{font-size:12px;color:#f0a500;letter-spacing:1px;}
+  .review-item .body{font-size:13px;line-height:1.5;color:var(--taupe);margin:0;}
+  .street-mode .review-item .body{color:#bdbdbd;}
+  .reviews-empty{font-size:13px;color:#aaa;text-align:center;padding:18px 0;}
+
+  .review-note{font-size:12px;color:var(--taupe);line-height:1.5;margin:0 0 10px;}
+  .street-mode .review-note{color:#aaa;}
+  .review-note a{color:var(--pink-deep);text-decoration:underline;}
+  .review-register,.review-form{display:flex;flex-direction:column;gap:8px;}
+  .review-register{flex-direction:row;}
+  .review-gate input,.review-form textarea{
+    width:100%;border:1.5px solid #e6cdd5;border-radius:10px;
+    padding:10px 12px;font-family:inherit;font-size:13px;outline:none;
+    background:var(--white);color:var(--ink);resize:vertical;
+  }
+  .street-mode .review-gate input,.street-mode .review-form textarea{
+    background:#1e1e1e;border-color:#444;color:#fff;
+  }
+  .review-gate button,.review-form button{
+    border:none;border-radius:999px;cursor:pointer;
+    background:var(--ink);color:#fff;font-size:13px;font-weight:600;
+    padding:10px 18px;white-space:nowrap;
+  }
+  .street-mode .review-gate button,.street-mode .review-form button{background:var(--pink-kimi);color:#1B1B1B;}
+  .review-stars{display:flex;gap:4px;font-size:22px;cursor:pointer;}
+  .review-stars span{color:#d9c3c9;transition:color .15s;}
+  .review-stars span.on{color:#f0a500;}
 </style>
 </head>
 <body class="classic-mode">
@@ -457,14 +703,23 @@
 
 <header>
   <div class="header-inner">
-    <div style="width:140px;display:flex;justify-content:flex-start;font-size:13px;font-weight:500;color:var(--taupe);">Buscar</div>
+    <div class="header-left">
+      <div class="search-box">
+        🔍 <input type="text" id="searchInput" placeholder="Buscar prendas…" oninput="onSearch(this.value)" autocomplete="off">
+      </div>
+    </div>
     <div class="logo">K<span>i</span>mi</div>
     <nav class="lines">
       <button id="btn-classic" class="active" onclick="setLine(&#39;classic&#39;)">Clásico</button>
       <button id="btn-street" onclick="setLine(&#39;street&#39;)">Kimi Street</button>
     </nav>
+    <div class="header-right">
+      <button class="cart-btn" onclick="openCart()" aria-label="Carrito">
+        🛒<span class="cart-badge hidden" id="cartBadge">0</span>
+      </button>
+    </div>
   </div>
-  <nav class="subnav" id="subnav"><a href="file:///C:/Users/PERSONAL/Downloads/kimi-sitio-web_1.html#">Vestidos</a><a href="file:///C:/Users/PERSONAL/Downloads/kimi-sitio-web_1.html#">Tops</a><a href="file:///C:/Users/PERSONAL/Downloads/kimi-sitio-web_1.html#">Conjuntos</a><a href="file:///C:/Users/PERSONAL/Downloads/kimi-sitio-web_1.html#">Accesorios</a><a href="file:///C:/Users/PERSONAL/Downloads/kimi-sitio-web_1.html#">Colecciones</a><a href="file:///C:/Users/PERSONAL/Downloads/kimi-sitio-web_1.html#">Conócenos</a></nav>
+  <nav class="subnav" id="subnav"></nav>
 </header>
 
 <section class="hero classic" id="hero">
@@ -508,9 +763,13 @@
 </section>
 
 <div id="line-body">
+  <div class="filter-bar" id="filterBar">
+    <span id="filterText"></span>
+    <button class="filter-clear" onclick="clearFilter()">✕ Quitar filtro</button>
+  </div>
   <div class="section-heading">
     <h2 id="section-title">Lo más nuevo</h2>
-    <a href="file:///C:/Users/PERSONAL/Downloads/kimi-sitio-web_1.html#" id="section-link">Ver todo</a>
+    <a href="#" id="section-link" onclick="clearFilter();return false;">Ver todo</a>
   </div>
   <div class="grid-wrap">
     <div class="product-grid" id="product-grid">
@@ -682,8 +941,80 @@
 
       <div class="pdp-model" id="pdpModel"></div>
 
-      <button class="pdp-add" id="pdpAdd">Agregar al carrito</button>
+      <button class="pdp-reviews-btn" id="pdpReviewsBtn" onclick="toggleReviews()">
+        💬 Ver comentarios (<span id="pdpReviewsCount">0</span>)
+      </button>
+
+      <!-- Panel de comentarios (oculto hasta hacer clic) -->
+      <div class="pdp-reviews" id="pdpReviews">
+        <div class="pdp-reviews-list" id="pdpReviewsList"></div>
+
+        <!-- Zona para comentar: requiere registro por correo -->
+        <div class="review-gate" id="reviewGate">
+          <p class="review-note">Para dejar un comentario, regístrate con tu correo. Sin registrarte solo puedes <b>leer</b> los comentarios.</p>
+          <div class="review-register">
+            <input type="email" id="reviewEmail" placeholder="tucorreo@ejemplo.com" autocomplete="email">
+            <button onclick="registerReviewer()">Registrarme</button>
+          </div>
+        </div>
+
+        <!-- Zona para escribir (visible solo si está registrado) -->
+        <div class="review-form" id="reviewForm" style="display:none;">
+          <p class="review-note">Comentas como <b id="reviewerEmail"></b> · <a href="#" onclick="logoutReviewer();return false;">cerrar sesión</a></p>
+          <div class="review-stars" id="reviewStars"></div>
+          <textarea id="reviewText" rows="3" placeholder="Cuéntanos qué te pareció la prenda…"></textarea>
+          <button onclick="submitReview()">Publicar comentario</button>
+        </div>
+      </div>
+
+      <button class="pdp-add" id="pdpAdd" onclick="addToCartFromPdp()">Agregar al carrito</button>
     </div>
+  </div>
+</div>
+
+<!-- ===== Carrito de compras ===== -->
+<div class="cart-overlay" id="cart" onclick="if(event.target===this)closeCart()">
+  <div class="cart-panel">
+    <div class="cart-head">
+      <h3>Tu carrito</h3>
+      <button class="cart-close" onclick="closeCart()" aria-label="Cerrar">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <!-- Recomendados (placeholders: edita en data.recommended) -->
+    <div class="cart-reco">
+      <h4>También te puede gustar</h4>
+      <div class="reco-grid" id="recoGrid"></div>
+    </div>
+
+    <div class="cart-foot">
+      <div class="cart-total">
+        <span>Total</span><span class="t" id="cartTotal">S/ 0.00</span>
+      </div>
+      <button class="cart-checkout" id="cartCheckout" onclick="checkout()">Ir al pago</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Pasarela de pago (Yape / Plin / Transferencia) ===== -->
+<div class="pay-overlay" id="payModal" onclick="if(event.target===this)closePay()">
+  <div class="pay-box">
+    <button class="pay-close" onclick="closePay()" aria-label="Cerrar">×</button>
+    <h3 class="pay-title">Elige cómo pagar</h3>
+    <p class="pay-total">Total a pagar: <strong id="payTotal">S/ 0.00</strong></p>
+
+    <div class="pay-tabs">
+      <button class="pay-tab active" data-tab="yape"  onclick="selectPay('yape')">Yape</button>
+      <button class="pay-tab"        data-tab="plin"  onclick="selectPay('plin')">Plin</button>
+      <button class="pay-tab"        data-tab="banco" onclick="selectPay('banco')">Transferencia</button>
+    </div>
+
+    <div class="pay-body" id="payBody"></div>
+
+    <a class="pay-send" id="paySend" target="_blank" rel="noopener">
+      📲 Ya pagué, enviar comprobante por WhatsApp
+    </a>
   </div>
 </div>
 
@@ -744,18 +1075,144 @@ const data = {
           modelNote:"La modelo mide 1.68 m y usa talla S.",
           gallery:[
             {img:"imagenes/clasico-01.jpg", label:"Frontal"},
-            {img:null, label:"Espalda"},
-            {img:null, label:"Lateral"},
-            {img:null, label:"Detalle de tela"},
+            {img:"imagenes/clasico-01-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/clasico-01-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/clasico-01-detalle.jpg", label:"Detalle de tela"},
           ],
         }},
-      {name:"Conjunto Kimi",       price:"40.00", oldPrice:null,     badge:null,     img:"imagenes/clasico-02.jpg"},
-      {name:"Top lentejuelas",   price:"30.00", oldPrice:"30.00", badge:"Oferta", img:"imagenes/clasico-03.jpg"},
-      {name:"Top satín",            price:"30.00",  oldPrice:null,     badge:null,     img:"imagenes/clasico-04.jpg"},
-      {name:"Falda lentejuelas con short interno",           price:"40.00", oldPrice:null,     badge:null,     img:"imagenes/clasico-05.jpg"},
-      {name:"Conjunto top + falda rosa",    price:"169.00", oldPrice:null,     badge:"Nuevo",  img:"imagenes/clasico-06.jpg"},
-      {name:"Top lazo espalda abierta",     price:"109.00", oldPrice:"139.00", badge:"Oferta", img:"imagenes/clasico-07.jpg"},
-      {name:"Aretes perla Kimi",            price:"39.00",  oldPrice:null,     badge:null,     img:"imagenes/clasico-08.jpg"},
+      {name:"Conjunto Kimi",       price:"40.00", oldPrice:null,     badge:null,     img:"imagenes/clasico-02.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/clasico-02.jpg", label:"Frontal"},
+            {img:"imagenes/clasico-02-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/clasico-02-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/clasico-02-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Top lentejuelas",   price:"30.00", oldPrice:"30.00", badge:"Oferta", img:"imagenes/clasico-03.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/clasico-03.jpg", label:"Frontal"},
+            {img:"imagenes/clasico-03-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/clasico-03-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/clasico-03-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Top satín",            price:"30.00",  oldPrice:null,     badge:null,     img:"imagenes/clasico-04.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/clasico-04.jpg", label:"Frontal"},
+            {img:"imagenes/clasico-04-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/clasico-04-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/clasico-04-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Falda lentejuelas con short interno",           price:"40.00", oldPrice:null,     badge:null,     img:"imagenes/clasico-05.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/clasico-05.jpg", label:"Frontal"},
+            {img:"imagenes/clasico-05-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/clasico-05-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/clasico-05-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Conjunto top + falda rosa",    price:"169.00", oldPrice:null,     badge:"Nuevo",  img:"imagenes/clasico-06.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/clasico-06.jpg", label:"Frontal"},
+            {img:"imagenes/clasico-06-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/clasico-06-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/clasico-06-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Top lazo espalda abierta",     price:"109.00", oldPrice:"139.00", badge:"Oferta", img:"imagenes/clasico-07.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/clasico-07.jpg", label:"Frontal"},
+            {img:"imagenes/clasico-07-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/clasico-07-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/clasico-07-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Aretes perla Kimi",            price:"39.00",  oldPrice:null,     badge:null,     img:"imagenes/clasico-08.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/clasico-08.jpg", label:"Frontal"},
+            {img:"imagenes/clasico-08-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/clasico-08-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/clasico-08-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
     ]
   },
   street: {
@@ -777,20 +1234,213 @@ const data = {
     subnav: ["Polos y poleras","Pantalones / Jogger","Casacas","Colecciones","Conócenos"],
     heroImg: "imagenes/hero-street.jpg",   /* foto campaña línea Street */
     products: [
-      {name:"Polera oversize Kimi logo",   price:"139.00", oldPrice:null,     badge:"Nuevo",  img:"imagenes/street-01.jpg"},
-      {name:"Jogger negro cargo",          price:"159.00", oldPrice:null,     badge:null,     img:"imagenes/street-02.jpg"},
-      {name:"Casaca bomber rosa",          price:"219.00", oldPrice:"259.00", badge:"Oferta", img:"imagenes/street-03.jpg"},
-      {name:"Polo básico blanco",          price:"89.00",  oldPrice:null,     badge:null,     img:"imagenes/street-04.jpg"},
-      {name:"Jogger gris jaspe",           price:"149.00", oldPrice:null,     badge:null,     img:"imagenes/street-05.jpg"},
-      {name:"Polera washed negra",         price:"139.00", oldPrice:null,     badge:"Nuevo",  img:"imagenes/street-06.jpg"},
-      {name:"Casaca denim Kimi",           price:"229.00", oldPrice:null,     badge:null,     img:"imagenes/street-07.jpg"},
-      {name:"Polo piqué rosa",             price:"99.00",  oldPrice:"119.00", badge:"Oferta", img:"imagenes/street-08.jpg"},
+      {name:"Polera oversize Kimi logo",   price:"139.00", oldPrice:null,     badge:"Nuevo",  img:"imagenes/street-01.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/street-01.jpg", label:"Frontal"},
+            {img:"imagenes/street-01-espalda.jpg", label:"Espalda"},
+            {img:'imagenes/street-01-lateral.jpg', label:"Lateral"},
+            {img:"imagenes/street-01-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Jogger negro cargo",          price:"159.00", oldPrice:null,     badge:null,     img:"imagenes/street-02.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/street-02.jpg", label:"Frontal"},
+            {img:"imagenes/street-02-espalda.jpg", label:"Espalda"},
+            {img:"imagenes/street-02-lateral.jpg", label:"Lateral"},
+            {img:"imagenes/street-02-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Casaca bomber rosa",          price:"219.00", oldPrice:"259.00", badge:"Oferta", img:"imagenes/street-03.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/street-03.jpg", label:"Frontal"},
+            {img:"imagenes/street-03-espalda.jpg", label:"Espalda"},
+            {img:"imagenes/street-03-lateral.jpg", label:"Lateral"},
+            {img:"imagenes/street-03-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Polo básico blanco",          price:"89.00",  oldPrice:null,     badge:null,     img:"imagenes/street-04.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/street-04.jpg", label:"Frontal"},
+            {img:"imagenes/street-04-espalda.jpg", label:"Espalda"},
+            {img:"imagenes/street-04-lateral.jpg", label:"Lateral"},
+            {img:"imagenes/street-04-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Jogger gris jaspe",           price:"149.00", oldPrice:null,     badge:null,     img:"imagenes/street-05.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/street-05.jpg", label:"Frontal"},
+            {img:"imagenes/street-05-espalda.jpg", label:"Espalda"},
+            {img:"imagenes/street-05-lateral.jpg", label:"Lateral"},
+            {img:"imagenes/street-05-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Polera washed negra",         price:"139.00", oldPrice:null,     badge:"Nuevo",  img:"imagenes/street-06.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/street-06.jpg", label:"Frontal"},
+            {img:"imagenes/street-06-espalda.jpg", label:"Espalda"},
+            {img:"imagenes/street-06-lateral.jpg", label:"Lateral"},
+            {img:"imagenes/street-06-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Casaca denim Kimi",           price:"229.00", oldPrice:null,     badge:null,     img:"imagenes/street-07.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/street-07.jpg", label:"Frontal"},
+            {img:"imagenes/street-07-espalda.jpg", label:"Espalda"},
+            {img:"imagenes/street-07-lateral.jpg", label:"Lateral"},
+            {img:"imagenes/street-07-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
+      {name:"Polo piqué rosa",             price:"99.00",  oldPrice:"119.00", badge:"Oferta", img:"imagenes/street-08.jpg",
+        details:{
+          description:"Vestido brasilero en tela ligera y fresca, con caída fluida y corte ajustado al cuerpo. Ideal para salidas de día o noche.",
+          colors:[ {name:"Rosa Kimi", hex:"#F2A6BC"}, {name:"Negro", hex:"#1B1B1B"}, {name:"Beige", hex:"#D9C3B0"} ],
+          sizes:["XS","S","M","L"],
+          measures:[
+            {talla:"XS", busto:"82", cintura:"62", cadera:"88", largo:"88"},
+            {talla:"S",  busto:"86", cintura:"66", cadera:"92", largo:"89"},
+            {talla:"M",  busto:"90", cintura:"70", cadera:"96", largo:"90"},
+            {talla:"L",  busto:"94", cintura:"74", cadera:"100", largo:"91"},
+          ],
+          modelNote:"La modelo mide 1.68 m y usa talla S.",
+          gallery:[
+            {img:"imagenes/street-08.jpg", label:"Frontal"},
+            {img:"imagenes/street-08-espalda.jpg", label:"Espalda"},
+            {img:"imagenes/street-08-lateral.jpg", label:"Lateral"},
+            {img:"imagenes/street-08-detalle.jpg", label:"Detalle de tela"},
+          ],
+        }},
     ]
   }
 };
 
+/* 🛍️ Productos recomendados que aparecen en el carrito (PLACEHOLDERS).
+   Edita nombre, precio y la ruta de la foto. Si img es null, muestra un placeholder. */
+const recommended = [
+  {name:"Aretes perla Kimi",  price:"39.00", img:null /* "imagenes/accesorio-01.jpg" */},
+  {name:"Scrunchie satinado", price:"19.00", img:null /* "imagenes/accesorio-02.jpg" */},
+  {name:"Bolso tote Kimi",    price:"59.00", img:null /* "imagenes/accesorio-03.jpg" */},
+  {name:"Lentes de sol",      price:"49.00", img:null /* "imagenes/accesorio-04.jpg" */},
+];
+
+/* 💳 Datos de pago (EDITA AQUÍ).
+   - Sube tus QR a la carpeta imagenes/ y pon la ruta en "qr".
+   - "titular" y "numero" se muestran debajo del QR. */
+const pago = {
+  yape: {
+    qr: null /* "imagenes/qr-yape.jpg" */,
+    titular: "Kimi Shop",
+    numero: "999 999 999",   // número Yape
+  },
+  plin: {
+    qr: null /* "imagenes/qr-plin.jpg" */,
+    titular: "Kimi Shop",
+    numero: "999 999 999",   // número Plin
+  },
+  banco: {
+    banco: "BCP",
+    titular: "Kimi Shop S.A.C.",
+    cuenta: "191-1234567-0-12",
+    cci: "00219100123456701234",
+  },
+  whatsapp: "51999999999",   // para enviar el comprobante (sin +, sin espacios)
+};
+
 let currentLine = "classic";
-let cart = new Set();
+/* Carrito: clave = "linea-idx" → { line, idx, qty } */
+let cart = {};
+let currentProductIdx = null;   // producto abierto en el PDP
+let activeCategory = null;      // categoría/búsqueda activa
+let searchQuery = "";
+
+/* ===== Comentarios de clientes =====
+   Cada producto guarda sus comentarios en reviews["linea-idx"].
+   Aquí dejo algunos de EJEMPLO (placeholders). El cliente solo puede
+   comentar si se registra con su correo; sin registro solo LEE. */
+let reviews = {
+  "classic-0": [
+    {who:"Lucía M.", stars:5, body:"Me encantó la tela, súper fresca. Talla perfecta 💕"},
+    {who:"Andrea P.", stars:4, body:"Bonito vestido, el color es tal cual la foto."},
+  ],
+};
+let reviewerEmail = null;       // correo del cliente registrado (null = no registrado)
+let reviewRating = 0;           // estrellas seleccionadas al comentar
 
 function setLine(line){
   currentLine = line;
@@ -830,33 +1480,64 @@ function setLine(line){
 
   renderSubnav(d.subnav);
   renderBubbles(d.categories, line);
-  renderProducts(d.products);
+  renderProducts();
   requestAnimationFrame(initTilt);
 }
 
 function renderSubnav(items){
   const nav = document.getElementById("subnav");
-  nav.innerHTML = items.map(i => `<a href="#">${i}</a>`).join("");
+  nav.innerHTML = items.map(i =>
+    `<a href="#" onclick="filterByCategory('${i.replace(/'/g,"\\'")}');return false;">${i}</a>`
+  ).join("");
 }
 
 function renderBubbles(categories, line){
   const wrap = document.getElementById("bubbles");
   wrap.innerHTML = categories.map(c => `
-    <div class="bubble ${line==='street' ? 'street-bubble' : ''}">
+    <div class="bubble ${line==='street' ? 'street-bubble' : ''} ${activeCategory===c.label ? 'active-cat' : ''}"
+         onclick="filterByCategory('${c.label.replace(/'/g,"\\'")}')">
       <div class="circle"><div class="circle-inner">${c.short}</div></div>
       <span class="label">${c.label}</span>
     </div>
   `).join("");
 }
 
-function renderProducts(products){
+/* Decide qué productos mostrar según búsqueda o categoría activa */
+function visibleProducts(){
+  const products = data[currentLine].products;
+  let list = products.map((p, idx) => ({p, idx}));   // conservamos el índice real
+  if(searchQuery){
+    const q = searchQuery.toLowerCase();
+    list = list.filter(o => o.p.name.toLowerCase().includes(q));
+  } else if(activeCategory){
+    const c = activeCategory.toLowerCase();
+    list = list.filter(o => o.p.name.toLowerCase().includes(matchCategory(c)));
+  }
+  return list;
+}
+
+/* Une el nombre de categoría con palabras que aparecen en los productos */
+function matchCategory(cat){
+  const map = {
+    "vestidos":"vestido", "tops":"top", "conjuntos":"conjunto", "accesorios":"aret",
+    "polos":"polo", "poleras":"polera", "jogger":"jogger", "casacas":"casaca",
+  };
+  return map[cat] || cat;
+}
+
+function renderProducts(){
   const grid = document.getElementById("product-grid");
-  grid.innerHTML = products.map((p, idx) => `
+  const list = visibleProducts();
+  if(list.length === 0){
+    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:#aaa;padding:40px 0;">No encontramos prendas para tu búsqueda 😕</p>`;
+    return;
+  }
+  grid.innerHTML = list.map(({p, idx}) => `
     <div class="product-card">
       <div class="product-img" onclick="openProduct(${idx})">
         ${p.badge ? `<div class="badge">${p.badge}</div>` : ""}
         ${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : `<div class="ph">${currentLine==='classic' ? 'Kimi' : 'foto'}</div>`}
-        <button class="add-btn" onclick="event.stopPropagation();toggleAdd(this, ${idx})">+</button>
+        <button class="add-btn ${isInCart(idx) ? 'added' : ''}" onclick="event.stopPropagation();toggleAdd(this, ${idx})">${isInCart(idx) ? '✓' : '+'}</button>
       </div>
       <p class="product-name" onclick="openProduct(${idx})" style="cursor:pointer">${p.name}</p>
       <p class="product-price">${p.oldPrice ? `<span class="price-old">S/ ${p.oldPrice}</span>` : ""}S/ ${p.price}</p>
@@ -864,20 +1545,236 @@ function renderProducts(products){
   `).join("");
 }
 
-function toggleAdd(btn, idx){
-  const key = currentLine + "-" + idx;
-  if(cart.has(key)){
-    cart.delete(key);
-    btn.classList.remove("added");
-    btn.textContent = "+";
+/* ===== Filtros: búsqueda y categorías ===== */
+function filterByCategory(label){
+  activeCategory = (activeCategory === label) ? null : label;  // volver a clic = quitar
+  searchQuery = "";
+  document.getElementById("searchInput").value = "";
+  refreshFilterBar();
+  renderBubbles(data[currentLine].categories, currentLine);
+  renderProducts();
+  requestAnimationFrame(initTilt);
+  document.getElementById("line-body").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function onSearch(value){
+  searchQuery = value.trim();
+  if(searchQuery) activeCategory = null;
+  refreshFilterBar();
+  renderBubbles(data[currentLine].categories, currentLine);
+  renderProducts();
+  requestAnimationFrame(initTilt);
+}
+
+function clearFilter(){
+  activeCategory = null;
+  searchQuery = "";
+  document.getElementById("searchInput").value = "";
+  refreshFilterBar();
+  renderBubbles(data[currentLine].categories, currentLine);
+  renderProducts();
+  requestAnimationFrame(initTilt);
+}
+
+function refreshFilterBar(){
+  const bar = document.getElementById("filterBar");
+  const txt = document.getElementById("filterText");
+  if(searchQuery){
+    txt.innerHTML = `Resultados para <b>"${searchQuery}"</b>`;
+    bar.classList.add("show");
+  } else if(activeCategory){
+    txt.innerHTML = `Categoría: <b>${activeCategory}</b>`;
+    bar.classList.add("show");
   } else {
-    cart.add(key);
-    btn.classList.add("added");
-    btn.textContent = "✓";
+    bar.classList.remove("show");
   }
 }
 
+/* ===== Carrito ===== */
+function cartKey(idx){ return currentLine + "-" + idx; }
+function isInCart(idx){ return !!cart[cartKey(idx)]; }
+
+function toggleAdd(btn, idx){
+  const key = cartKey(idx);
+  if(cart[key]){
+    delete cart[key];
+    btn.classList.remove("added");
+    btn.textContent = "+";
+  } else {
+    cart[key] = { line: currentLine, idx, qty: 1 };
+    btn.classList.add("added");
+    btn.textContent = "✓";
+  }
+  updateCartBadge();
+  renderCart();
+}
+
+function addProduct(line, idx){
+  const key = line + "-" + idx;
+  if(cart[key]) cart[key].qty++;
+  else cart[key] = { line, idx, qty: 1 };
+  updateCartBadge();
+  renderCart();
+  renderProducts();      // refresca los botones "+" / "✓" del grid
+}
+
+function addToCartFromPdp(){
+  if(currentProductIdx === null) return;
+  addProduct(currentLine, currentProductIdx);
+  closeProduct();
+  openCart();
+}
+
+function changeQty(key, delta){
+  if(!cart[key]) return;
+  cart[key].qty += delta;
+  if(cart[key].qty <= 0) delete cart[key];
+  updateCartBadge();
+  renderCart();
+  renderProducts();
+}
+
+function removeItem(key){
+  delete cart[key];
+  updateCartBadge();
+  renderCart();
+  renderProducts();
+}
+
+function cartCount(){
+  return Object.values(cart).reduce((n, it) => n + it.qty, 0);
+}
+
+function updateCartBadge(){
+  const badge = document.getElementById("cartBadge");
+  const n = cartCount();
+  badge.textContent = n;
+  badge.classList.toggle("hidden", n === 0);
+}
+
+function openCart(){
+  renderCart();
+  renderReco();
+  document.getElementById("cart").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeCart(){
+  document.getElementById("cart").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function renderCart(){
+  const wrap = document.getElementById("cartItems");
+  const keys = Object.keys(cart);
+  let total = 0;
+
+  if(keys.length === 0){
+    wrap.innerHTML = `<div class="cart-empty">Tu carrito está vacío.<br>¡Agrega algo que te encante! 💕</div>`;
+  } else {
+    wrap.innerHTML = keys.map(key => {
+      const it = cart[key];
+      const p = data[it.line].products[it.idx];
+      total += parseFloat(p.price) * it.qty;
+      const img = p.img
+        ? `<img src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.parentNode.textContent='foto'">`
+        : 'foto';
+      return `
+        <div class="cart-row">
+          <div class="cart-thumb">${img}</div>
+          <div class="cart-info">
+            <p class="nm">${p.name}</p>
+            <p class="pr">S/ ${p.price}</p>
+            <div class="cart-qty">
+              <button onclick="changeQty('${key}',-1)">−</button>
+              <span>${it.qty}</span>
+              <button onclick="changeQty('${key}',1)">+</button>
+              <button class="cart-remove" onclick="removeItem('${key}')">Quitar</button>
+            </div>
+          </div>
+        </div>`;
+    }).join("");
+  }
+
+  document.getElementById("cartTotal").textContent = "S/ " + total.toFixed(2);
+  document.getElementById("cartCheckout").disabled = keys.length === 0;
+}
+
+function renderReco(){
+  document.getElementById("recoGrid").innerHTML = recommended.map(r => `
+    <div class="reco-card">
+      <div class="reco-img">${r.img ? `<img src="${r.img}" alt="${r.name}">` : `Foto<br>${r.name}`}</div>
+      <p class="nm">${r.name}</p>
+      <p class="pr">S/ ${r.price}</p>
+    </div>
+  `).join("");
+}
+
+/* ===== Pasarela de pago ===== */
+let payMethod = "yape";
+
+function checkout(){
+  if(cartCount() === 0) return;
+  document.getElementById("payTotal").textContent = document.getElementById("cartTotal").textContent;
+  selectPay("yape");
+  document.getElementById("payModal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closePay(){
+  document.getElementById("payModal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function selectPay(method){
+  payMethod = method;
+  document.querySelectorAll(".pay-tab").forEach(t =>
+    t.classList.toggle("active", t.dataset.tab === method)
+  );
+
+  const body = document.getElementById("payBody");
+  if(method === "banco"){
+    const b = pago.banco;
+    body.innerHTML = `
+      <div class="pay-bank">
+        <div class="row"><span class="k">Banco</span><span class="v">${b.banco}</span></div>
+        <div class="row"><span class="k">Titular</span><span class="v">${b.titular}</span></div>
+        <div class="row"><span class="k">N° de cuenta</span><span class="v">${b.cuenta}</span></div>
+        <div class="row"><span class="k">CCI</span><span class="v">${b.cci}</span></div>
+      </div>
+      <button class="pay-copy" onclick="copyText('${b.cci}', this)">📋 Copiar CCI</button>`;
+  } else {
+    const d = pago[method];
+    const qr = d.qr
+      ? `<img src="${d.qr}" alt="QR ${method}" onerror="this.style.display='none';this.parentNode.innerHTML='QR pendiente<br>(sube tu QR a imagenes/)'">`
+      : `QR pendiente<br>(sube tu QR a imagenes/)`;
+    body.innerHTML = `
+      <div class="pay-qr">${qr}</div>
+      <div class="pay-info">
+        <div><span class="lbl">Escanea el QR con ${method === "yape" ? "Yape" : "Plin"}</span></div>
+        <div class="val">${d.titular}</div>
+        <div class="val">${d.numero}</div>
+      </div>
+      <button class="pay-copy" onclick="copyText('${d.numero.replace(/\s/g,"")}', this)">📋 Copiar número</button>`;
+  }
+
+  // Enlace de WhatsApp para enviar el comprobante
+  const total = document.getElementById("cartTotal").textContent;
+  const labels = {yape:"Yape", plin:"Plin", banco:"transferencia bancaria"};
+  const msg = `Hola Kimi Shop 💕 acabo de pagar por ${labels[method]}. Total: ${total}. Adjunto mi comprobante.`;
+  document.getElementById("paySend").href =
+    `https://wa.me/${pago.whatsapp}?text=${encodeURIComponent(msg)}`;
+}
+
+function copyText(text, btn){
+  navigator.clipboard?.writeText(text).then(() => {
+    const old = btn.textContent;
+    btn.textContent = "✅ ¡Copiado!";
+    setTimeout(() => btn.textContent = old, 1500);
+  });
+}
+
 setLine("classic");
+updateCartBadge();
 
 /* ===== 3D Tilt on product cards ===== */
 function initTilt(){
@@ -933,6 +1830,7 @@ function defaultDetails(p){
 function getDetails(p){ return p.details ? p.details : defaultDetails(p); }
 
 function openProduct(idx){
+  currentProductIdx = idx;
   const p = data[currentLine].products[idx];
   const d = getDetails(p);
 
@@ -959,6 +1857,10 @@ function openProduct(idx){
   currentGallery = (d.gallery && d.gallery.length) ? d.gallery : [{img: p.img || null, label:"Frontal"}];
   renderThumbs();
   selectGalleryImg(0);
+
+  // Comentarios: contador visible, panel cerrado por defecto
+  document.getElementById("pdpReviews").classList.remove("open");
+  document.getElementById("pdpReviewsCount").textContent = (reviews[cartKey(idx)] || []).length;
 
   document.getElementById("pdpMain").classList.remove("zoomed");
   document.getElementById("pdp").classList.add("open");
@@ -1016,7 +1918,89 @@ function closeProduct(){
   main.addEventListener("mouseleave", () => main.classList.remove("zoomed"));
 })();
 
-document.addEventListener("keydown", e => { if(e.key === "Escape") closeProduct(); });
+/* ===== Comentarios de clientes ===== */
+function toggleReviews(){
+  const panel = document.getElementById("pdpReviews");
+  const willOpen = !panel.classList.contains("open");
+  panel.classList.toggle("open", willOpen);
+  if(willOpen) renderReviews();   // se cargan solo al abrir
+}
+
+function renderReviews(){
+  // Lista de comentarios del producto actual
+  const list = reviews[cartKey(currentProductIdx)] || [];
+  const wrap = document.getElementById("pdpReviewsList");
+  wrap.innerHTML = list.length
+    ? list.map(r => `
+        <div class="review-item">
+          <div class="top">
+            <span class="who">${r.who}</span>
+            <span class="stars">${"★".repeat(r.stars)}${"☆".repeat(5 - r.stars)}</span>
+          </div>
+          <p class="body">${escapeHtml(r.body)}</p>
+        </div>`).join("")
+    : `<div class="reviews-empty">Aún no hay comentarios. ¡Sé el primero en opinar!</div>`;
+
+  // Mostrar zona de registro o de escritura según si está logueado
+  const registered = !!reviewerEmail;
+  document.getElementById("reviewGate").style.display = registered ? "none" : "block";
+  document.getElementById("reviewForm").style.display = registered ? "block" : "none";
+  if(registered){
+    document.getElementById("reviewerEmail").textContent = reviewerEmail;
+    renderStars();
+  }
+}
+
+function registerReviewer(){
+  const input = document.getElementById("reviewEmail");
+  const email = input.value.trim();
+  // Validación simple de correo
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    alert("Por favor ingresa un correo válido para poder comentar.");
+    return;
+  }
+  reviewerEmail = email;
+  reviewRating = 0;
+  renderReviews();
+}
+
+function logoutReviewer(){
+  reviewerEmail = null;
+  reviewRating = 0;
+  renderReviews();
+}
+
+function renderStars(){
+  const wrap = document.getElementById("reviewStars");
+  wrap.innerHTML = [1,2,3,4,5].map(n =>
+    `<span class="${n <= reviewRating ? 'on' : ''}" onclick="setRating(${n})">★</span>`
+  ).join("");
+}
+function setRating(n){ reviewRating = n; renderStars(); }
+
+function submitReview(){
+  if(!reviewerEmail){ alert("Regístrate con tu correo para comentar."); return; }
+  const text = document.getElementById("reviewText").value.trim();
+  if(!text){ alert("Escribe tu comentario antes de publicar."); return; }
+  if(reviewRating === 0){ alert("Selecciona cuántas estrellas le das."); return; }
+
+  const key = cartKey(currentProductIdx);
+  if(!reviews[key]) reviews[key] = [];
+  // Mostramos solo la parte antes del @ del correo, por privacidad
+  reviews[key].unshift({ who: reviewerEmail.split("@")[0], stars: reviewRating, body: text });
+
+  document.getElementById("reviewText").value = "";
+  reviewRating = 0;
+  document.getElementById("pdpReviewsCount").textContent = reviews[key].length;
+  renderReviews();
+}
+
+/* Evita que un comentario inyecte HTML */
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+document.addEventListener("keydown", e => { if(e.key === "Escape"){ closePay(); closeProduct(); closeCart(); } });
 </script>
 
 
