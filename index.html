@@ -258,6 +258,32 @@
   .footer-inner h4{font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin:0 0 16px;color:var(--taupe);}
   .footer-inner p,.footer-inner a{font-size:13px;line-height:2;color:#5c5c5c;display:block;}
   .footer-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:26px;margin-bottom:12px;}
+  
+  /* ===== Social Media Buttons ===== */
+  .social-section{margin-top:20px;}
+  .social-section h4{font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin:0 0 16px;color:var(--taupe);}
+  .social-links{display:flex;gap:14px;flex-wrap:wrap;}
+  .social-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:42px;height:42px;border-radius:50%;
+    background:var(--pink-kimi);color:#fff;
+    border:none;cursor:pointer;font-size:20px;
+    transition:all .3s cubic-bezier(.23,1,.32,1);
+    text-decoration:none;
+    box-shadow:0 2px 8px rgba(242,166,188,.3);
+  }
+  .social-btn:hover{
+    background:#d4a5b5;
+    transform:scale(1.15) translateY(-4px);
+    box-shadow:0 6px 18px rgba(242,166,188,.5);
+  }
+  .social-btn.instagram:hover{background:#e4405f;}
+  .social-btn.tiktok:hover{background:#000;}
+  .social-btn.facebook:hover{background:#1877f2;}
+  .social-btn.whatsapp:hover{background:#25d366;}
+  .street-mode .social-btn{background:#555;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+  .street-mode .social-btn:hover{background:var(--pink-kimi);box-shadow:0 6px 18px rgba(242,166,188,.5);}
+  
   .footer-bottom{
     max-width:1180px;margin:40px auto 0;padding-top:20px;border-top:1px solid #f1dde3;
     display:flex;justify-content:space-between;font-size:12px;color:#999;flex-wrap:wrap;gap:10px;
@@ -875,6 +901,15 @@
     <div>
       <div class="footer-logo">Kimi</div>
       <p style="max-width:240px;color:#7a7a7a;">Marca peruana de ropa. Línea Clásico para tu día a día elegante, y Kimi Street para tu lado urbano.</p>
+      <div class="social-section">
+        <h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="https://www.instagram.com/erikioto/" target="_blank" rel="noopener noreferrer" class="social-btn instagram" title="Instagram">📷</a>
+          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn tiktok" title="TikTok">🎵</a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn facebook" title="Facebook">f</a>
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp" title="WhatsApp">💬</a>
+        </div>
+      </div>
     </div>
     <div>
       <h4>Tienda</h4>

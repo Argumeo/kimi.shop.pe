@@ -23,7 +23,7 @@ La web las carga automáticamente; mientras no exista el archivo muestra un plac
 | `clasico-01.jpg` | Vestido brasilero | S/ 129.00 |
 | `clasico-02.jpg` | Conjunto Kimi | S/ 179.00 |
 | `clasico-03.jpg` | Vestido drapeado chocolate | S/ 159.00 |
-| `clasico-04.jpg` | Top halter blanco | S/ 99.00 |
+| `clasico-04.jpg` | Top Satin | S/ 99.00 |
 | `clasico-05.jpg` | Vestido midi beige | S/ 189.00 |
 | `clasico-06.jpg` | Conjunto top + falda rosa | S/ 169.00 |
 | `clasico-07.jpg` | Top lazo espalda abierta | S/ 109.00 |
